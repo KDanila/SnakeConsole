@@ -7,6 +7,8 @@ public class Board {
     private final int sizeA;
     private final int sizeB;
     private Point[][] points;
+    private Snake snake;
+
 
     public Board(int a, int b) {
         sizeA = a;

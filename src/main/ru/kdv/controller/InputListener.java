@@ -1,21 +1,25 @@
 package main.ru.kdv.controller;
 
+import lombok.AllArgsConstructor;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
 
+
+@AllArgsConstructor
 public class InputListener {
-    public static void listenInput() {
-        try(Terminal terminal = TerminalBuilder.builder()
+    private final MovementController movementController;
+
+    public void listenInput() {
+        try (Terminal terminal = TerminalBuilder.builder()
                 .jna(true)
                 .system(true)
-                .build()){
+                .build()) {
             terminal.enterRawMode();
             Reader reader = terminal.reader();
-            int read = reader.read();
-            System.out.println(read);
+            movementController.changeDirection(reader.read());
         } catch (IOException e) {
             e.printStackTrace();
         }
